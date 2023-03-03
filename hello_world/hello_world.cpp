@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS // Used to avoid scanf issue, an alternative is use scanf_s
+
 #include <iostream>
 #include<cstdlib>
 #include<cstdio>
@@ -13,12 +15,16 @@ int main()
     auto result = (10 <=> 20) > 0;
     cout << "Hello World!\n";
     cout << "This is the result :" << result<< endl;
-    printf("Using C way \n");
+    printf("Using C way printing\n");
     
 
     double radius = 0.0;
     cout << "Enter radius:";
     cin >> radius; //scanf("%lf", &radius);
+    calculate_circle_area(radius);
+
+    printf("(C way) Enter radius");
+    scanf("%lf", &radius);
     calculate_circle_area(radius);
 }
 
