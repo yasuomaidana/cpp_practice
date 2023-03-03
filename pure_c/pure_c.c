@@ -7,10 +7,10 @@ void calculate_circle_area(double radius);
 int main()
 {
     double radius = 0.0;
-    printf("Previous size of radious :%lu \n",sizeof(radius));
+    printf("Previous size of radious :%lu bytes\n",sizeof(radius));
     printf("Enter radius: ");
     scanf("%lf", &radius);
-    printf("Size of radious after input: %lu \n",sizeof(radius));
+    printf("Size of radious after input: %lu bytes\n",sizeof(radius));
     calculate_circle_area(radius);
 }
 
