@@ -1,5 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS // Used to avoid scanf issue, an alternative is use scanf_s
-
 #include <iostream>
 #include<cstdlib>
 #include<cstdio>
@@ -19,12 +17,12 @@ int main()
     
 
     double radius = 0.0;
-    cout << "Enter radius:";
+    cout << "Enter radius: ";
     cin >> radius; //scanf("%lf", &radius);
     calculate_circle_area(radius);
 
-    printf("(C way) Enter radius");
-    scanf("%lf", &radius);
+    printf("(C way) Enter radius: ");
+    scanf_s("%lf", &radius);
     calculate_circle_area(radius);
 }
 
