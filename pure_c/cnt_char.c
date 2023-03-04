@@ -4,6 +4,7 @@ int main(void)
 {
     int blanks = 0, digits = 0, letters = 0, others = 0;
     int c;
+    printf("C before asignment: %d",c);
     while ((c = getchar()) != EOF)
     {
         if (c == ' ')
