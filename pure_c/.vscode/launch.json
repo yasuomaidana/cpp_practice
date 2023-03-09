@@ -1,11 +1,12 @@
 {
     "configurations": [
+        
         {
             "name": "C/C++: gcc.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": [],
+            "args": ["-std=c90"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
