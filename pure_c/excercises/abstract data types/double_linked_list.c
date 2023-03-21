@@ -28,6 +28,16 @@ DLN add_element(DLN node, int next_value)
     return next_node;
 }
 
+DLN create_from_list(int current_index, int array_size, DLN previous_node, int array[]){
+    if(current_index < array_size){
+        DLN node = create_node(array[current_index++]);
+        node->prev = previous_node;
+        node->next = create_from_list(current_index,array_size,node,array);
+        return node;
+    }
+    else return NULL;
+}
+
 void swap_nodes(DLN a, DLN b){
     a->next = b->next;
     b->prev = a->prev;
@@ -51,12 +61,8 @@ void print_backward(DLN node){
 }
 void main()
 {
-    DLN tail = create_node(0);
-    DLN head = add_element(tail,1);
-    head = add_element(head,2);
-    head = add_element(head,3);
-    print_backward(head);
-    printf("\n");
-    print_forward(tail);
+    int array[3] = {1,2,4};
+    DLN head = create_from_list(0,3,NULL,array);
+    print_forward(head);
 
 }
