@@ -11,31 +11,24 @@ typedef struct double_linked_node
 
 typedef dln *DLN;
 
-DLN create_node(int value)
+DLN create_node(int value, DLN prev)
 {
-    DLN node = (malloc(sizeof(DLN)));
+    DLN node = (DLN)(malloc(sizeof(DLN)));
     node->value = value;
-    node->prev = NULL;
-    node->next = NULL;
+    node->prev = prev;
     return node;
 }
 
-DLN add_element(DLN node, int next_value)
-{
-    DLN next_node = create_node(next_value);
-    next_node->prev = node;
-    node->next = next_node;
-    return next_node;
-}
-
 DLN create_from_list(int current_index, int array_size, DLN previous_node, int array[]){
+    DLN node;
     if(current_index < array_size){
-        DLN node = create_node(array[current_index++]);
-        node->prev = previous_node;
-        node->next = create_from_list(current_index,array_size,node,array);
-        return node;
+        node = create_node(array[current_index], previous_node);
+        node->next = create_from_list(current_index+1,array_size,node,array);
     }
-    else return NULL;
+    else { 
+        return NULL; 
+        }
+    return node;
 }
 
 void swap_nodes(DLN a, DLN b){
@@ -51,18 +44,13 @@ void print_forward(DLN node){
         printf("%d ",node->value);
         print_forward(node->next);
     }
+    return;
 }
 
-void print_backward(DLN node){
-    if(node != NULL){
-        printf("%d ",node->value);
-        print_backward(node->prev);
-    }
-}
-void main()
+void main(void)
 {
-    int array[3] = {1,2,4};
-    DLN head = create_from_list(0,3,NULL,array);
+    int array[4] = {1,2,3,4};
+    DLN head = create_from_list(0,4,NULL,array);
     print_forward(head);
-
+    free(head);
 }
