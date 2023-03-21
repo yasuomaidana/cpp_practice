@@ -31,12 +31,14 @@ DLN create_from_list(int current_index, int array_size, DLN previous_node, int a
     return node;
 }
 
-void swap_nodes(DLN a, DLN b){
+DLN swap_nodes(DLN a, DLN b){
     a->next = b->next;
     b->prev = a->prev;
 
     a->prev = b;
     b->next = a;
+
+    return b;
 }
 
 void print_forward(DLN node){
@@ -47,10 +49,26 @@ void print_forward(DLN node){
     return;
 }
 
-void main(void)
-{
-    int array[4] = {1,2,3,4};
+DLN rise_bubble(DLN head, int level){
+    if(level-1>0){
+        if(head->value>head->next->value){
+            head = swap_nodes(head,head->next);
+        }
+        head->next = rise_bubble(head->next,level-1);
+    }
+    return head;
+}
+DLN bubble_sort(DLN head, int i, int size){
+
+    if(i<size){
+        head = bubble_sort(rise_bubble(head,size-i),i+1,size);
+    }
+    return head;
+}
+void main(){
+    int array[4] = {5,2,1,4};
     DLN head = create_from_list(0,4,NULL,array);
+    head = bubble_sort(head,0,4);
     print_forward(head);
-    free(head);
+    system("pause");
 }
