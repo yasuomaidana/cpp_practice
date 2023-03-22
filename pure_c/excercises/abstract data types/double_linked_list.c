@@ -19,11 +19,11 @@ DLN create_node(int value, DLN prev)
     return node;
 }
 
-DLN create_from_list(int current_index, int array_size, DLN previous_node, int array[]){
+DLN create_list(int current_index, int array_size, DLN previous_node){
     DLN node;
     if(current_index < array_size){
-        node = create_node(array[current_index], previous_node);
-        node->next = create_from_list(current_index+1,array_size,node,array);
+        node = create_node(rand(), previous_node);
+        node->next = create_list(current_index+1,array_size,node);
     }
     else { 
         return NULL; 
@@ -32,21 +32,24 @@ DLN create_from_list(int current_index, int array_size, DLN previous_node, int a
 }
 
 DLN swap_nodes(DLN a, DLN b){
-    a->next = b->next;
-    b->prev = a->prev;
-
-    a->prev = b;
-    b->next = a;
-
-    return b;
+    int temp = a->value;
+    a->value = b->value;
+    b->value = temp;
+    return a;
 }
 
 void print_forward(DLN node){
-    if(node != NULL){
+    while(node != NULL){
         printf("%d ",node->value);
-        print_forward(node->next);
+        node = node->next;
     }
-    return;
+}
+
+void print_backward(DLN node){
+    while(node != NULL){
+        printf("%d ",node->value);
+        node = node->prev;
+    }
 }
 
 DLN rise_bubble(DLN head, int level){
@@ -65,13 +68,19 @@ DLN bubble_sort(DLN head, int i, int size){
     }
     return head;
 }
-void main(){
-    int array[100] = {0};
-    for(int i = 0; i<100; i++){
-        array[i] = rand();
+
+DLN get_tail(DLN head){
+    while(head->next!=NULL){
+        head = head->next;
     }
-    DLN head = create_from_list(0,100,NULL,array);
-    head = bubble_sort(head,0,100);
+    return head;
+}
+void main(){
+    int items = 100;
+    DLN head = create_list(0,items,NULL);
+    head = bubble_sort(head,0,items);
+    printf("\n-------Forward---------\n");
     print_forward(head);
-    system("pause");
+    printf("\n--------Backward--------\n");
+    print_backward(get_tail(head));
 }
