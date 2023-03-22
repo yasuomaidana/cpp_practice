@@ -66,9 +66,12 @@ DLN bubble_sort(DLN head, int i, int size){
     return head;
 }
 void main(){
-    int array[4] = {5,2,1,4};
-    DLN head = create_from_list(0,4,NULL,array);
-    head = bubble_sort(head,0,4);
+    int array[100] = {0};
+    for(int i = 0; i<100; i++){
+        array[i] = rand();
+    }
+    DLN head = create_from_list(0,100,NULL,array);
+    head = bubble_sort(head,0,100);
     print_forward(head);
     system("pause");
 }
