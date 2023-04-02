@@ -1,8 +1,9 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "iosfwd": "cpp"
-    }
+        "iosfwd": "cpp",
+        "vector": "cpp"
+    },
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -10,6 +11,6 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**.exe":true
+        "**/**.exe":true
     }
 }
