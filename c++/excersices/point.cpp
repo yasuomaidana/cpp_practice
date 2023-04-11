@@ -2,23 +2,29 @@
 using namespace std;
 
 class point{
-    
-    public:
+    private:
         double x,y;
-        
-        point(double x, double y){
-            this->x = x;
-            this->y = y;
+
+
+    public:
+        point(double x, double y):x(x),y(y){}
+
+        point operator+ (point& p2){
+            point sum = {x + p2.x, y + p2.y};
+            return sum;
         }
 
-    point operator+ (point& p2){
-        point sum = {x + p2.x, y + p2.y};
-        return sum;
-    }
-};
+        double gx() const{
+            return this->x;
+        }
+        double gy() const{
+            return this->y;
+        }
+    };
 
 ostream& operator<< (ostream& out, const point& p){
-    out <<"("<<p.x<<","<<p.y<<")";
+    
+    out <<"("<<p.gx()<<","<<p.gy()<<")";
 }
 
 int main(){
