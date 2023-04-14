@@ -20,7 +20,7 @@ private:
         {
             for (int j = i + 1; j < nodes; j++)
             {
-                if (random_density(generator) < 0.2)
+                if (random_density(generator) < density)
                 {
                     graphs_matrix[i][j] = graphs_matrix[j][i] = random_weigth(generator);
                 }
@@ -29,11 +29,12 @@ private:
     }
 
 public:
-    graph(int nodes, double min_weight = 1.0, double max_weight = 10.0, double density = 0.1)
+    graph(int nodes, double density = 0.2, double min_weight = 1.0, double max_weight = 10.0)
     {
         random_weigth = uniform_real_distribution<double>(min_weight, max_weight);
         this->density = density;
         this->nodes = nodes;
+        build_graphs();
     }
     void print()
     {
@@ -50,31 +51,6 @@ public:
 
 int main()
 {
-
-    default_random_engine generator;
-    uniform_real_distribution<double> random_weigth(1.0, 10.0);
-    uniform_real_distribution<double> random_density(0, 1);
-
-    int size = 10;
-    vector<vector<double>> graphs_matrix(size, vector<double>(size));
-
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = i + 1; j < size; j++)
-        {
-            if (random_density(generator) < 0.2)
-            {
-                graphs_matrix[i][j] = graphs_matrix[j][i] = random_weigth(generator);
-            }
-        }
-    }
-
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            cout << graphs_matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
+    graph graph_50 = graph(5,0.2);
+    graph_50.print();
 }
