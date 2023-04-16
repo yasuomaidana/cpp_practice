@@ -125,12 +125,26 @@ public:
             cout << weight << endl;
         }
     }
+
+    void show_average(){
+        double accum = 0;
+        for(double weight: path_weights){
+            if(weight == INFINITY) continue;
+            accum += weight;
+        }
+        accum /= nodes;
+        cout<<"Average weight connections for "<<nodes<<" nodes with "<< density*100<<"% of density"<< " : "<< accum <<endl;
+    }
 };
 
 int main()
 {
-    graph graph_50 = graph(50, 0.2);
+    graph graph_50 = graph(50, .2);
     graph_50.calculate_weights();
+    graph_50.show_average();
     cout << "-------" << endl;
-    graph_50.print_weights();
+    graph graph_40d = graph(50, 0.4);
+    graph_40d.calculate_weights();
+    graph_40d.show_average();
+
 }
