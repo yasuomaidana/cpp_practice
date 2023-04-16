@@ -23,7 +23,8 @@ private:
                 if (random_density(generator) < density)
                 {
                     graphs_matrix[i][j] = graphs_matrix[j][i] = random_weigth(generator);
-                }
+                } else
+                    graphs_matrix[i][j] = graphs_matrix[j][i] = INFINITY;
             }
         }
     }
