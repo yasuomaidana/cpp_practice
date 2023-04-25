@@ -1,5 +1,8 @@
 #include <iostream>
+#include <math.h>
+
 using namespace std;
+
 
 class point
 {
@@ -9,19 +12,22 @@ private:
 public:
     point(double x = 0, double y = 0) : x(x), y(y) {}
 
-    point operator+(point &p2)
+    point operator+(point p2)
     {
         point sum = {x + p2.x, y + p2.y};
         return sum;
     }
 
-    double gx() const
-    {
-        return this->x;
+    point(double u):x(u), y(0){}
+
+    operator double(){
+        return sqrt(x*x+y*y);
     }
-    double gy() const
+
+    friend ostream &operator<<(ostream &out, const point &p) //Allows to access to private fields
     {
-        return this->y;
+
+        out << "(" << p.x << "," << p.y << ")";
     }
 
     ~point()
@@ -30,11 +36,7 @@ public:
     }
 };
 
-ostream &operator<<(ostream &out, const point &p)
-{
 
-    out << "(" << p.gx() << "," << p.gy() << ")";
-}
 
 int main()
 {
@@ -43,5 +45,10 @@ int main()
     cout << "Original point: " << *p1 << endl;
     cout << "Sum point: " << *p1 + p2 << endl;
 
-    delete p1, p2;
+    double pd = *p1;
+    cout<< "Point: "<<*p1<< " as double: "<<pd<<endl;
+    
+    point p3 = *p1 + p2 + p2;
+    cout<< "Point 3: "<<p3<<endl;
+    delete p1, p2,p3;
 }
