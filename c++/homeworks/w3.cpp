@@ -1,8 +1,11 @@
 #include "graph.h"
 #include <iomanip>
+#include "tree.h"
 
 int main(){
-    graph graph_50 = graph(5, 0.6);
+    int nodes = 50;
+
+    graph graph_50 = graph(nodes, 0.6);
     auto matrix = graph_50.graphs_matrix;
     for(auto row: matrix){
         for(auto element: row){
@@ -10,4 +13,8 @@ int main(){
         }
         cout<<endl;
     }
+
+    jarnik_tree jt = jarnik_tree(nodes);
+    jt.build_jarnik_tree(matrix);
+    cout<<jt;
 }
